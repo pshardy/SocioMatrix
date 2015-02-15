@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace SocioMatrix {
     public class SocioType {
         public string name { get; set; }
+        public bool skipWrite { get; set; }
         public Dictionary<string, int> sameTypes = new Dictionary<string, int>();
     }
     public class SocioItem {
@@ -19,7 +20,7 @@ namespace SocioMatrix {
         public Dictionary<string, SocioType> headerDict = new Dictionary<string, SocioType>();
         public List<SocioType> headers = new List<SocioType>();
 
-        public BindingList<SocioItem> itemList = new BindingList<SocioItem>();
+        public  BindingList<SocioItem> itemList = new BindingList<SocioItem>();
 
 
         public void CalculateMatrix() {
@@ -43,9 +44,46 @@ namespace SocioMatrix {
             }
         }
 
-
         public void SaveToFile(string fileName) {
+            string result = "";
 
+            int count = 0;
+            foreach (SocioType header in headers) {
+                if (!header.skipWrite) {
+                    result += header.name;
+
+                    if (count++ < headers.Count - 1) {
+                        result += '\t';
+                    }
+                } else {
+                    count++;
+                }
+            }
+
+            for (int i = 0; i < headers.Count; i++) {
+                count = 0;
+                if (!headers[i].skipWrite) {
+                    result += '\n';
+                    for (int j = 0; j < headers.Count; j++) {
+                        if (!headers[j].skipWrite) {
+                            if (headers[i].sameTypes.ContainsKey(headers[j].name)) {
+                                result += headers[i].sameTypes[headers[j].name];
+                            } else {
+                                result += "0";
+                            }
+                            if (count++ < headers.Count - 1) {
+                                result += '\t';
+                            }
+                        } else {
+                            count++;
+                        }
+                    }
+                }
+            }
+
+            using (StreamWriter writer = new StreamWriter(fileName)) {
+                writer.Write(result);
+            }
         }
 
         /// <summary>
@@ -66,6 +104,9 @@ namespace SocioMatrix {
                         foreach (string v in values) {
                             SocioType type = new SocioType();
                             type.name = v;
+                            if (type.name == "rcid" || type.name == "datestr") {
+                                type.skipWrite = true;
+                            }
                             headers.Add(type);
                             // Set for O(1) access.
                             headerDict[v] = type;
