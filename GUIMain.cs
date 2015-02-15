@@ -58,30 +58,32 @@ namespace SocioMatrix {
         }
 
         private void BindCompleteDataGrid() {
-            this.dataGridView.Columns.Clear();
+            if (m_socioMatrix != null && m_socioMatrix.headers.Count > 0) {
+                this.dataGridView.Columns.Clear();
 
-            this.dataGridView.RowHeadersWidth = 100;
+                this.dataGridView.RowHeadersWidth = 100;
 
-            // Create columns.
-            for (int i = 0; i < m_socioMatrix.headers.Count; i++) {
-                this.dataGridView.Columns.Add(m_socioMatrix.headers[i].name, m_socioMatrix.headers[i].name);
-            }
+                // Create columns.
+                for (int i = 0; i < m_socioMatrix.headers.Count; i++) {
+                    this.dataGridView.Columns.Add(m_socioMatrix.headers[i].name, m_socioMatrix.headers[i].name);
+                }
 
-            // Fill rows.
-            this.dataGridView.Rows.Add(m_socioMatrix.headers.Count);
-            for (int i = 0; i < m_socioMatrix.headers.Count; i++) {
-                this.dataGridView.Rows[i].HeaderCell.Value = m_socioMatrix.headers[i].name;
-                for (int j = 0; j < m_socioMatrix.headers.Count; j++) {
-                    if (m_socioMatrix.headers[i].sameTypes.ContainsKey(m_socioMatrix.headers[j].name)) {
-                        this.dataGridView.Rows[i].Cells[j].Value = m_socioMatrix.headers[i].sameTypes[this.dataGridView.Columns[j].HeaderText];
+                // Fill rows.
+                this.dataGridView.Rows.Add(m_socioMatrix.headers.Count);
+                for (int i = 0; i < m_socioMatrix.headers.Count; i++) {
+                    this.dataGridView.Rows[i].HeaderCell.Value = m_socioMatrix.headers[i].name;
+                    for (int j = 0; j < m_socioMatrix.headers.Count; j++) {
+                        if (m_socioMatrix.headers[i].sameTypes.ContainsKey(m_socioMatrix.headers[j].name)) {
+                            this.dataGridView.Rows[i].Cells[j].Value = m_socioMatrix.headers[i].sameTypes[this.dataGridView.Columns[j].HeaderText];
+                        }
                     }
                 }
-            }
 
-            this.dataGridView.Columns.RemoveAt(0);
-            this.dataGridView.Columns.RemoveAt(this.dataGridView.Columns.Count - 1);
-            this.dataGridView.Rows.RemoveAt(0);
-            this.dataGridView.Rows.RemoveAt(this.dataGridView.Rows.Count - 1);
+                this.dataGridView.Columns.RemoveAt(0);
+                this.dataGridView.Columns.RemoveAt(this.dataGridView.Columns.Count - 1);
+                this.dataGridView.Rows.RemoveAt(0);
+                this.dataGridView.Rows.RemoveAt(this.dataGridView.Rows.Count - 1);
+            }
         }
 
         private void loadButton_Click(object sender, EventArgs e) {
