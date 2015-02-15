@@ -1,9 +1,0 @@
-c:\users\patrick\documents\visual studio 2013\Projects\SocioMatrix\SocioMatrix\bin\Debug\SocioMatrix.exe.config
-c:\users\patrick\documents\visual studio 2013\Projects\SocioMatrix\SocioMatrix\bin\Debug\SocioMatrix.exe
-c:\users\patrick\documents\visual studio 2013\Projects\SocioMatrix\SocioMatrix\bin\Debug\SocioMatrix.pdb
-c:\users\patrick\documents\visual studio 2013\Projects\SocioMatrix\SocioMatrix\obj\Debug\SocioMatrix.csprojResolveAssemblyReference.cache
-c:\users\patrick\documents\visual studio 2013\Projects\SocioMatrix\SocioMatrix\obj\Debug\SocioMatrix.GUIMain.resources
-c:\users\patrick\documents\visual studio 2013\Projects\SocioMatrix\SocioMatrix\obj\Debug\SocioMatrix.Properties.Resources.resources
-c:\users\patrick\documents\visual studio 2013\Projects\SocioMatrix\SocioMatrix\obj\Debug\SocioMatrix.csproj.GenerateResource.Cache
-c:\users\patrick\documents\visual studio 2013\Projects\SocioMatrix\SocioMatrix\obj\Debug\SocioMatrix.exe
-c:\users\patrick\documents\visual studio 2013\Projects\SocioMatrix\SocioMatrix\obj\Debug\SocioMatrix.pdb
