@@ -23,6 +23,10 @@ namespace SocioMatrix {
 
 
         public void CalculateMatrix() {
+            // Reset headers data.
+            foreach (SocioType header in headers) {
+                header.sameTypes.Clear();
+            }
             for (int i = 0; i < itemList.Count; i++) {
                 foreach (SocioType header in headers) {
                     foreach (SocioType nextHeader in headers) {
